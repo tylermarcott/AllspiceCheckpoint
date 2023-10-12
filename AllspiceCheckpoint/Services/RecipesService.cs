@@ -1,4 +1,5 @@
 
+
 namespace AllspiceCheckpoint.Services;
 
 public class RecipesService
@@ -9,4 +10,12 @@ public class RecipesService
     {
         _repo = repo;
     }
+
+    internal List<Recipe> GetAllRecipes()
+    {
+        List<Recipe> recipes = _repo.GetAllRecipes();
+        return recipes;
+    }
 }
+
+
