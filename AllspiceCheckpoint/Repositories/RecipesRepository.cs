@@ -18,7 +18,7 @@ public class RecipesRepository
         rec.*,
         act.*
         From recipes rec
-        JOIN accounts acc ON act.id = rec.creatorId
+        JOIN accounts acc ON acc.id = rec.creatorId
         ;";
         List<Recipe> recipes = _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
         {
