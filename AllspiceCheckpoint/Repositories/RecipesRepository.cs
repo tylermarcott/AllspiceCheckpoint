@@ -2,6 +2,7 @@
 
 
 
+
 namespace AllspiceCheckpoint.Repositories;
 public class RecipesRepository
 {
@@ -10,6 +11,29 @@ public class RecipesRepository
     public RecipesRepository(IDbConnection db)
     {
         _db = db;
+    }
+
+    internal Recipe CreateRecipe(Recipe recipeData)
+    {
+        string sql = @"
+        INSERT INTO recipes
+        (title, instructions, img, category, creatorId)
+        VALUES
+        (@title, @instructions, @img, @category, @creatorId);
+
+        SELECT
+        rec.*,
+        acc.*
+        FROM recipes rec
+        JOIN accounts acc ON acc.id = rec.creatorId
+        WHERE rec.id = LAST_INSERT_ID()
+        ;";
+        Recipe newRecipe = _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
+        {
+            recipe.Creator = account;
+            return recipe;
+        }, recipeData).FirstOrDefault();
+        return newRecipe;
     }
 
     internal List<Recipe> GetAllRecipes()
