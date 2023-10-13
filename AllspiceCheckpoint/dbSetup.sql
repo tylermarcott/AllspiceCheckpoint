@@ -21,6 +21,19 @@ CREATE TABLE
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
+CREATE TABLE
+    IF NOT EXISTS ingredients(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        name VARCHAR(255) NOT NULL,
+        quantity INT NOT NULL,
+        creatorId VARCHAR(255) NOT NULL,
+        recipeId INT NOT NULL,
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
 INSERT INTO
     recipes(
         title,
@@ -68,3 +81,11 @@ VALUES (
         'Breakfast',
         '65271b81e57f826489d44109'
     );
+
+SELECT * FROM recipes;
+
+SELECT * FROM recipes JOIN accounts;
+
+SELECT *
+FROM recipes rec
+    JOIN accounts act ON act.id = rec.creatorId;
