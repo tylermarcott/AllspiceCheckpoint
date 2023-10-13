@@ -21,7 +21,7 @@ public class IngredientsRepository
 
         SELECT
         ing.*,
-        rec.*
+        acc.*
         FROM ingredients ing
         JOIN accounts acc ON acc.id = @creatorId
         WHERE ing.id = LAST_INSERT_ID()
