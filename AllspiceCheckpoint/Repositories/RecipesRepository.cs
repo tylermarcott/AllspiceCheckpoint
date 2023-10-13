@@ -42,7 +42,7 @@ public class RecipesRepository
         SELECT
         rec.*,
         acc.*
-        From recipes rec
+        FROM recipes rec
         JOIN accounts acc ON acc.id = rec.creatorId
         ;";
         List<Recipe> recipes = _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
