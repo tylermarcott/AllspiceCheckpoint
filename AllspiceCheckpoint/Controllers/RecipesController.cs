@@ -6,11 +6,13 @@ namespace AllspiceCheckpoint.Controllers;
 public class RecipesController : ControllerBase
 {
     private readonly RecipesService _recipesService;
+    private readonly IngredientsService _ingredientsService;
     private readonly Auth0Provider _auth0;
 
-    public RecipesController(RecipesService recipesService, Auth0Provider auth0)
+    public RecipesController(RecipesService recipesService, IngredientsService ingredientsService, Auth0Provider auth0)
     {
         _recipesService = recipesService;
+        _ingredientsService = ingredientsService;
         _auth0 = auth0;
     }
 
@@ -54,6 +56,20 @@ public class RecipesController : ControllerBase
         {
             Recipe recipe = _recipesService.GetRecipeById(recipeId);
             return recipe;
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("{recipeId}/ingredients")]
+    public ActionResult<List<Ingredient>> GetIngredientsByRecipe(int recipeId)
+    {
+        try
+        {
+            List<Ingredient> ingredient = _ingredientsService.GetIngredientsByRecipe(recipeId);
+            return ingredient;
         }
         catch (Exception e)
         {

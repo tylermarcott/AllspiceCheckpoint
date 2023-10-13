@@ -1,4 +1,5 @@
 
+
 namespace AllspiceCheckpoint.Repositories;
 
 public class IngredientsRepository
@@ -32,5 +33,23 @@ public class IngredientsRepository
             return ingredient;
         }, ingredientData).FirstOrDefault();
         return newIngredient;
+    }
+
+    internal List<Ingredient> GetIngredientsByRecipe(int recipeId)
+    {
+        string sql = @"
+        SELECT
+        ing.*,
+        acc.*
+        FROM ingredients ing
+        JOIN accounts acc ON acc.id = ing.creatorId
+        WHERE recipeId = @recipeId
+        ;";
+        List<Ingredient> ingredients = _db.Query<Ingredient, Account, Ingredient>(sql, (ingredient, account) =>
+        {
+            ingredient.Creator = account;
+            return ingredient;
+        }, new { recipeId }).ToList();
+        return ingredients;
     }
 }
