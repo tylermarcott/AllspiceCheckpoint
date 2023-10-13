@@ -28,5 +28,33 @@ public class RecipesController : ControllerBase
         }
     }
 
+    [HttpGet("{recipeId}")]
+    public ActionResult<Recipe> GetRecipeById(int recipeId)
+    {
+        try
+        {
+            Recipe recipe = _recipesService.GetRecipeById(recipeId);
+            return recipe;
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    // [HttpPost]
+    // [Authorize]
+    // public ActionResult<Recipe>CreateRecipe([FromBody] recipeData)
+    // {
+    //     try
+    //     {
+    //         Recipe recipe = _recipesService.CreateRecipe();
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         return BadRequest(e.Message);
+    //     }
+    // }
+
 
 }

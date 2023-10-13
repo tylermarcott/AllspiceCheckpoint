@@ -1,6 +1,7 @@
 
 
 
+
 namespace AllspiceCheckpoint.Repositories;
 public class RecipesRepository
 {
@@ -16,7 +17,7 @@ public class RecipesRepository
         string sql = @"
         SELECT
         rec.*,
-        act.*
+        acc.*
         From recipes rec
         JOIN accounts acc ON acc.id = rec.creatorId
         ;";
@@ -26,5 +27,23 @@ public class RecipesRepository
             return recipe;
         }).ToList();
         return recipes;
+    }
+
+    internal Recipe GetRecipeById(int recipeId)
+    {
+        string sql = @"
+        SELECT
+        rec.*,
+        acc.*
+        FROM recipes rec
+        JOIN accounts acc ON rec.creatorId = acc.id
+        WHERE rec.id = @recipeId
+        ;";
+        Recipe foundRecipe = _db.Query<Recipe, Account, Recipe>(sql, (recipe, creator) =>
+        {
+            recipe.Creator = creator;
+            return recipe;
+        }, new { recipeId }).FirstOrDefault();
+        return foundRecipe;
     }
 }
