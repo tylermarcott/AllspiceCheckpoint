@@ -4,6 +4,7 @@
 
 
 
+
 namespace AllspiceCheckpoint.Repositories;
 public class RecipesRepository
 {
@@ -81,5 +82,21 @@ public class RecipesRepository
         ;";
         int rows = _db.Execute(sql, new { recipeId });
         return rows;
+    }
+
+    internal Recipe EditRecipe(Recipe recipeToUpdate)
+    {
+        string sql = @"
+        UPDATE recipes
+        SET
+        title = @title,
+        instructions = @instructions,
+        img = @img,
+        category = @category
+        WHERE id = @id;
+        SELECT * FROM recipes WHERE id = @id
+        ;";
+        Recipe recipe = _db.Query<Recipe>(sql, recipeToUpdate).FirstOrDefault();
+        return recipe;
     }
 }

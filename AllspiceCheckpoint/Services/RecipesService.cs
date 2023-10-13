@@ -35,7 +35,6 @@ public class RecipesService
 
     internal void DeleteRecipe(int recipeId, string userId)
     {
-        // FIXME: have the following error: Code other than 400 returned, make sure you are throwing a bad request when trying to get data that doesn't exist!: expected 204 to be one of [ 400 ]
         Recipe foundRecipe = _repo.GetRecipeById(recipeId);
         if (foundRecipe.CreatorId != userId) throw new Exception("Unauthorized to remove");
         int rows = _repo.DeleteRecipe(recipeId);
@@ -43,6 +42,17 @@ public class RecipesService
         if (rows < 1) throw new Exception("Something REALLY bad has happened");
     }
 
+    internal Recipe EditRecipe(Recipe updatedRecipe)
+    {
+        Recipe original = this.GetRecipeById(updatedRecipe.Id);
+
+        original.Title = updatedRecipe.Title != null ? updatedRecipe.Title : original.Title;
+        original.Instructions = updatedRecipe.Instructions != null ? updatedRecipe.Instructions : original.Instructions;
+        original.Img = updatedRecipe.Img != null ? updatedRecipe.Img : original.Img;
+        original.Category = updatedRecipe.Category != null ? updatedRecipe.Category : original.Category;
+        Recipe newRecipe = _repo.EditRecipe(original);
+        return newRecipe;
+    }
 }
 
 
