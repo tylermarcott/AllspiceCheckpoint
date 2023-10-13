@@ -3,6 +3,7 @@
 
 
 
+
 namespace AllspiceCheckpoint.Repositories;
 public class RecipesRepository
 {
@@ -69,5 +70,16 @@ public class RecipesRepository
             return recipe;
         }, new { recipeId }).FirstOrDefault();
         return foundRecipe;
+    }
+
+    internal int DeleteRecipe(int recipeId)
+    {
+        string sql = @"
+        DELETE FROM recipes
+        WHERE id = @recipeId
+        LIMIT 1
+        ;";
+        int rows = _db.Execute(sql, new { recipeId });
+        return rows;
     }
 }
