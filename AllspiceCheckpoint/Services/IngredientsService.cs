@@ -1,6 +1,7 @@
 
 
 
+
 namespace AllspiceCheckpoint.Services;
 
 public class IngredientsService
@@ -22,5 +23,11 @@ public class IngredientsService
     {
         List<Ingredient> ingredients = _repo.GetIngredientsByRecipe(recipeId);
         return ingredients;
+    }
+
+    internal void DeleteIngredient(int ingredientId)
+    {
+        //TODO finish this.
+        // Ingredient foundIngredient = 
     }
 }
