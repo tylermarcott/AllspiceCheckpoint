@@ -14,4 +14,19 @@ public class FavoritesRepository
     {
         _db = db;
     }
+
+    internal Favorite CreateFavorite(Favorite favoriteData)
+    {
+        string sql = @"
+        INSERT INTO favorites
+        (recipeId, accountId)
+        VALUES
+        (@recipeId, @accountId);
+        SELECT LAST_INSERT_ID()
+        ;";
+
+        string lastInsertId = _db.ExecuteScalar<string>(sql, favoriteData);
+        favoriteData.Id = lastInsertId;
+        return favoriteData;
+    }
 }

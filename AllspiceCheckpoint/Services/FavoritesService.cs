@@ -14,4 +14,9 @@ public class FavoritesService
         _repo = repo;
     }
 
+    internal Favorite CreateFavorite(Favorite favoriteData)
+    {
+        Favorite newFavorite = _repo.CreateFavorite(favoriteData);
+        return newFavorite;
+    }
 }
