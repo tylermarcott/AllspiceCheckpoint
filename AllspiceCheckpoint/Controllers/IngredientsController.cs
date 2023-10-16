@@ -31,13 +31,13 @@ public class IngredientsController : ControllerBase
     }
 
     [Authorize]
-    [HttpDelete]
+    [HttpDelete("{ingredientId}")]
     public async Task<ActionResult<string>> DeleteIngredient(int ingredientId)
     {
         try
         {
             Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
-            _ingredientsService.DeleteIngredient(ingredientId);
+            _ingredientsService.DeleteIngredient(ingredientId, userInfo.Id);
             string message = "Successfully deleted ingredient";
             return message;
         }

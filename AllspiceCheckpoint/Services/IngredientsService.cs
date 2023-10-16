@@ -25,9 +25,13 @@ public class IngredientsService
         return ingredients;
     }
 
-    internal void DeleteIngredient(int ingredientId)
+    internal void DeleteIngredient(int ingredientId, string userId)
     {
-        //TODO finish this.
-        // Ingredient foundIngredient = 
+        Ingredient foundIngredient = _repo.GetById(ingredientId);
+        if (foundIngredient == null) throw new Exception("Invalid ingredient id!");
+        if (foundIngredient.CreatorId != userId) throw new Exception("This is not your ingredient to delete.");
+        int rows = _repo.DeleteIngredient(ingredientId);
+        if (rows < 1) throw new Exception("LESS than 1 row deleted.");
+        if (rows > 1) throw new Exception("MORE than 1 row deleted.");
     }
 }
