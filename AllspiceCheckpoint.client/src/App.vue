@@ -3,6 +3,7 @@
     <Navbar />
   </header>
   <main>
+    
     <router-view />
   </main>
    <footer>
@@ -37,4 +38,6 @@ footer {
   place-content: center;
   height: 32px;
 }
+
+
 </style>
