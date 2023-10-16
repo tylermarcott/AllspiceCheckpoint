@@ -25,7 +25,7 @@ public class FavoritesRepository
         SELECT LAST_INSERT_ID()
         ;";
 
-        string lastInsertId = _db.ExecuteScalar<string>(sql, favoriteData);
+        int lastInsertId = _db.ExecuteScalar<int>(sql, favoriteData);
         favoriteData.Id = lastInsertId;
         return favoriteData;
     }
