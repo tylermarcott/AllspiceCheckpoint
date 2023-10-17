@@ -2,22 +2,22 @@
 
 <!-- FIXME: login component dissapeared, fix this -->
 
-  <div class="row background-img text-light">   
-    <nav class="navbar-expand-lg">
-      <div class="collapse navbar-collapse" id="navbarText">
-        <Login />
-      </div>
-    </nav>
-
-    <div class="col-12">
-        <h1>AllSpice</h1>
-    </div>
-
-    <div class="col-12">
-        <h3>Where we bring our favorite ingredients to you</h3>
-    </div>
-
+<section class="background-img text-light">
+  <div class="row text-end"> 
+    <div>
+      <Login />
+    </div>  
   </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <h1>AllSpice</h1>
+    </div>
+    <div class="col-12">
+      <h3>Where we bring our favorite ingredients to you</h3>
+    </div>
+  </div>
+</section>
 </template>
 
 <script>
