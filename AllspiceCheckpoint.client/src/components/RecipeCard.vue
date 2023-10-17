@@ -1,27 +1,19 @@
 <template>
   <div class="recipe-card col-4">
-    <img class="recipe-img" src="https://i.redd.it/ygkncmia5wc31.jpg" alt="bopa-chon">
-    <p>ingredients, pizza, bopa chons</p>
+    <img class="recipe-img" :src="recipe.img" :alt="recipe.name">
+    <p>{{ recipe.title }}</p>
   </div>
 </template>
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
-import {recipesService} from '../services/RecipesService.js'
-import Pop from "../utils/Pop.js";
+import { Recipe } from "../models/Recipe.js";
 export default {
+  props: {recipe: {type: Object || Recipe, required: true}},
   setup(){
-    onMounted(()=> getRecipes());
-    async function getRecipes(){
-      try {
-        await recipesService.getRecipes();
-      } catch (error) {
-        Pop.error(error)
-      }
+  return { 
+    
     }
-  return {  }
   }
 };
 </script>

@@ -1,19 +1,34 @@
 <template>
   <header class="container-fluid">
     <div class="row">
-      <RecipeCard/>
+      <div v-for="recipe in recipes" :key="recipe.id">
+        <RecipeCard :recipe="recipe"/>
+      </div>
     </div>
     
   </header>
 </template>
 
 <script>
+import { computed, onMounted } from "vue";
+import { recipesService } from "../services/RecipesService.js";
+import Pop from "../utils/Pop.js";
+import { AppState } from "../AppState.js";
+
 export default {
   setup() {
-
-    // TODO: need to start with getting recipes to the page.
+    onMounted(() => getRecipes());
+    async function getRecipes() {
+      try {
+        await recipesService.getRecipes();
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
     
-    return {}
+    return {
+      recipes: computed(()=> AppState.recipes)
+    }
   }
 }
 </script>

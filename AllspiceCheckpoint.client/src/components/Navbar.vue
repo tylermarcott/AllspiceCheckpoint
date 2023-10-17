@@ -4,13 +4,13 @@
 
 <section class="background-img text-light">
   <div class="row text-end"> 
-    <div>
+    <div class="px-2 mt-1">
       <Login />
     </div>  
   </div>
   
-  <div class="row">
-    <div class="col-12">
+  <div class="row text-center opaque-card">
+    <div class="col-12 margin">
       <h1>AllSpice</h1>
     </div>
     <div class="col-12">
@@ -50,6 +50,11 @@ a:hover {
   background-position: bottom;
   background-size: cover;
   min-height: 70vh;
+}
+
+.opaque-card{
+  background-color: rgba(15, 15, 15, 0.666);
+  margin-top: 20vh;
 }
 
 @media screen and (min-width: 768px) {
