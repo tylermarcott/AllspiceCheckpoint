@@ -1,12 +1,12 @@
 <template>
-  <header class="container-fluid">
+  <main class="container-fluid bg-dark">
     <div class="row">
-      <div v-for="recipe in recipes" :key="recipe.id">
+      <div class="col-4 d-flex align-items-center justify-content-center" v-for="recipe in recipes" :key="recipe.id">
         <RecipeCard :recipe="recipe"/>
       </div>
     </div>
     
-  </header>
+  </main>
 </template>
 
 <script>

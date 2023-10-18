@@ -1,7 +1,16 @@
 <template>
-  <div class="recipe-card col-4">
-    <img class="recipe-img" :src="recipe.img" :alt="recipe.name">
-    <p>{{ recipe.title }}</p>
+  <div class="recipe-card">
+    <div class="row">
+      <h5>
+        {{ recipe.category }}
+      </h5>
+    </div>
+
+      <img class="recipe-img" :src="recipe.img" :alt="recipe.name">
+
+    <div class="row mt-2">
+      <p>{{ recipe.title }}</p>
+    </div>
   </div>
 </template>
 
@@ -27,10 +36,12 @@ export default {
 
   .recipe-card{
     text-align: center;
-    max-height: 30vh;
+    height: 35vh;
     aspect-ratio: 1/1;
     margin-top: 1em;
-    background-color: gray;
+    background-color: rgba(55, 55, 55, 0.676);
+    padding: 1em;
+    border-radius: 5px;
   }
 
 </style>

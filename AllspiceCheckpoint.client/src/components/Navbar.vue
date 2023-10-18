@@ -18,6 +18,30 @@
     </div>
   </div>
 </section>
+
+  <div class="row nav-bar bg-dark justify-content-center">
+    <div class="col-1">
+      <button class="btn btn-light">
+        Home
+      </button>
+    </div>
+    <div class="col-1">
+      <button class="btn btn-light">
+        My Recipes
+      </button>
+    </div>
+    <div class="col-1">
+      <button class="btn btn-light">
+        Favorites
+      </button>
+    </div>
+    <div class="col-1">  
+      <button class="btn btn-light">
+        Create Recipe
+      </button>
+    </div>
+  </div>
+
 </template>
 
 <script>
@@ -50,6 +74,11 @@ a:hover {
   background-position: bottom;
   background-size: cover;
   min-height: 70vh;
+}
+
+.nav-bar{
+  position: relative;
+  margin-top: 1em;
 }
 
 .opaque-card{
