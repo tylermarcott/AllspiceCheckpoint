@@ -16,6 +16,7 @@
 
 
 <script>
+import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import { Recipe } from "../models/Recipe.js";
 import { recipesService } from "../services/RecipesService.js";

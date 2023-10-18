@@ -97,6 +97,34 @@ VALUES (
         '65271b81e57f826489d44109'
     );
 
+INSERT INTO
+    ingredients(
+        name,
+        quantity,
+        creatorId,
+        recipeId
+    )
+VALUES (
+        'chocolate',
+        20,
+        '65271b81e57f826489d44109',
+        79
+    )
+
+INSERT INTO
+    ingredients(
+        name,
+        quantity,
+        creatorId,
+        recipeId
+    )
+VALUES (
+        'smellies',
+        1,
+        '65271b81e57f826489d44109',
+        79
+    )
+
 SELECT * FROM recipes;
 
 SELECT * FROM recipes JOIN accounts;

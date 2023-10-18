@@ -26,8 +26,9 @@
         </div>
         <div class="col-6">
           <h3>Ingredients</h3>
-          put all of your ingredients here
-          {{ recipe.ingredients }}
+          <div v-for="i in ingredients" :key="i.id">
+            {{ i.name }} {{ i.quantity }}
+          </div>
         </div>
       </div>
     </div>
@@ -36,19 +37,17 @@
 </template>
 
 <script>
-import { onMounted, watchEffect } from "vue";
+import { computed } from "vue";
 import { Recipe } from "../models/Recipe.js";
-import Pop from "../utils/Pop.js";
-import { recipesService } from "../services/RecipesService.js";
-import { logger } from "../utils/Logger.js";
 import { AppState } from "../AppState.js";
+
 
 export default {
   props: { recipe: { type: Object || Recipe, required: true } },
 setup() {  
 
   return {
-
+        ingredients: computed(() => AppState.activeIngredients)
   };
 },
 };
