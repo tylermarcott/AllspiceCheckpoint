@@ -1,5 +1,38 @@
 <template>
   <main class="container-fluid bg-dark">
+    <div class="row nav-bar bg-dark justify-content-center">
+      <div class="col-1">
+        <button class="btn btn-light">
+
+          <!-- TODO: do if/else ifs at the bottom to filter between all, myRecipes and favorited recipes -->
+          <!-- TODO: do @clicks for all of the buttons, and have them set to filterBy = 'whatever here' -->
+          Home
+        </button>
+      </div>
+      <div class="col-1">
+        <button class="btn btn-light">
+          My Recipes
+        </button>
+      </div>
+      <div class="col-1">
+        <button @click="getMyRecipes" class="btn btn-light">
+          Favorites
+        </button>
+      </div>
+        <div class="col-1">
+          <ModalWrapper id="create-event" v-if="user.isAuthenticated">
+            <template #button>
+              <button class="btn btn-light">
+                Create Recipe
+              </button>
+            </template>
+            <template #body>
+              <RecipeForm/>
+            </template>
+          </ModalWrapper>
+        </div>
+    </div>
+
     <div class="row">
       <div class="col-4 d-flex align-items-center justify-content-center" v-for="recipe in recipes" :key="recipe.id">
         <!-- <RecipeCard :recipe="recipe"/> -->
@@ -22,8 +55,7 @@ import { computed, onMounted } from "vue";
 import { recipesService } from "../services/RecipesService.js";
 import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
-import { logger } from "../utils/Logger.js";
-
+import ModalWrapper from '../components/ModalWrapper.vue'
 export default {
   setup() {
     onMounted(() => getRecipes());
@@ -39,7 +71,8 @@ export default {
       recipes: computed(()=> AppState.recipes),
       user: computed(()=> AppState.user),
     }
-  }
+  },
+  components: { ModalWrapper }
 }
 </script>
 
@@ -50,6 +83,11 @@ export default {
   place-content: center;
   text-align: center;
   user-select: none;
+}
+
+.nav-bar{
+  position: relative;
+  margin-top: 1em;
 }
 
 </style>

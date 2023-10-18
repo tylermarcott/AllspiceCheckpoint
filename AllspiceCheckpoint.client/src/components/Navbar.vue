@@ -19,7 +19,7 @@
   </div>
 </section>
 
-  <div class="row nav-bar bg-dark justify-content-center">
+  <!-- <div class="row nav-bar bg-dark justify-content-center">
     <div class="col-1">
       <button class="btn btn-light">
         Home
@@ -47,14 +47,13 @@
           </template>
         </ModalWrapper>
       </div>
-  </div>
+  </div> -->
 
 </template>
 
 <script>
 import { computed } from "vue";
 import Login from './Login.vue';
-import ModalWrapper from './ModalWrapper.vue';
 import { AppState } from "../AppState.js";
 export default {
   setup() {
@@ -62,7 +61,7 @@ export default {
       user: computed(() => AppState.user)
     }
   },
-  components: { Login, ModalWrapper }
+  components: { Login }
 }
 </script>
 
