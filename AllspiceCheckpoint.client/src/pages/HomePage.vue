@@ -2,7 +2,15 @@
   <main class="container-fluid bg-dark">
     <div class="row">
       <div class="col-4 d-flex align-items-center justify-content-center" v-for="recipe in recipes" :key="recipe.id">
-        <RecipeCard :recipe="recipe"/>
+        <!-- <RecipeCard :recipe="recipe"/> -->
+          <ModalWrapper id="show-recipe-details" v-if="user.isAuthenticated">
+            <template #button>
+              <RecipeCard :recipe="recipe"/>
+            </template>
+            <template #body>
+              <RecipeDetails :recipe="recipe"/>
+            </template>
+          </ModalWrapper>
       </div>
     </div>
     
@@ -27,7 +35,8 @@ export default {
     }
     
     return {
-      recipes: computed(()=> AppState.recipes)
+      recipes: computed(()=> AppState.recipes),
+      user: computed(()=> AppState.user)
     }
   }
 }

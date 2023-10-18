@@ -1,17 +1,17 @@
 <template>
-  <div class="recipe-card">
-    <div class="row">
-      <h5>
-        {{ recipe.category }}
-      </h5>
-    </div>
-
+    <div class="recipe-card">
+      <div class="row">
+        <h5>
+          {{ recipe.category }}
+        </h5>
+      </div>
+      
       <img class="recipe-img" :src="recipe.img" :alt="recipe.name">
-
-    <div class="row mt-2">
-      <p>{{ recipe.title }}</p>
+      
+      <div class="row mt-2">
+        <p>{{ recipe.title }}</p>
+      </div>
     </div>
-  </div>
 </template>
 
 
