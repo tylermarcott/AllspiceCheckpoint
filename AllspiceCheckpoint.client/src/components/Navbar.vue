@@ -36,8 +36,7 @@
       </button>
     </div>
       <div class="col-1">
-        <!-- TODO: put v-if="user.isAuthenticated" here -->
-        <ModalWrapper id="create-event">
+        <ModalWrapper id="create-event" v-if="user.isAuthenticated">
           <template #button>
             <button class="btn btn-light">
               Create Recipe
@@ -53,12 +52,17 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import Login from './Login.vue';
+import ModalWrapper from './ModalWrapper.vue';
+import { AppState } from "../AppState.js";
 export default {
   setup() {
-    return {}
+    return {
+      user: computed(() => AppState.user)
+    }
   },
-  components: { Login }
+  components: { Login, ModalWrapper }
 }
 </script>
 
