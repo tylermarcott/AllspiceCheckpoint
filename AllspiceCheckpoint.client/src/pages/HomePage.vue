@@ -22,6 +22,7 @@ import { computed, onMounted } from "vue";
 import { recipesService } from "../services/RecipesService.js";
 import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
+import { logger } from "../utils/Logger.js";
 
 export default {
   setup() {
@@ -36,7 +37,7 @@ export default {
     
     return {
       recipes: computed(()=> AppState.recipes),
-      user: computed(()=> AppState.user)
+      user: computed(()=> AppState.user),
     }
   }
 }

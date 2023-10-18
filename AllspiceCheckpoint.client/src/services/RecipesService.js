@@ -11,6 +11,17 @@ class RecipesService{
     AppState.recipes = res.data.map(recipe => new Recipe(recipe))
   }
 
+  async getIngredientsByRecipe(recipeId){
+    logger.log('getting ingredients for the following recipe:', recipeId)
+    // const res = await api.get(`api/recipes/${recipeId}/ingredients`)
+  }
+
+  setActiveRecipe(recipeId){
+    const foundRecipe = AppState.recipes.find(r => r.id == recipeId)
+
+    AppState.activeRecipe = foundRecipe;
+  }
+
   async createRecipe(formData){
 
     logger.log('here is our form data we want to make a recipe with:', formData)

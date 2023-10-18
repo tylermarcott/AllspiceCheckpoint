@@ -1,5 +1,5 @@
 <template>
-    <div class="recipe-card">
+    <div @click="setActiveRecipe(recipe.id)" class="recipe-card">
       <div class="row">
         <h5>
           {{ recipe.category }}
@@ -17,11 +17,20 @@
 
 <script>
 import { Recipe } from "../models/Recipe.js";
+import { recipesService } from "../services/RecipesService.js";
+import { logger } from "../utils/Logger.js";
+import Pop from "../utils/Pop.js";
 export default {
   props: {recipe: {type: Object || Recipe, required: true}},
   setup(){
   return { 
-    
+      setActiveRecipe(recipeId) {
+        try {
+          recipesService.setActiveRecipe(recipeId);
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
     }
   }
 };
