@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-4 d-flex align-items-center justify-content-center" v-for="recipe in recipes" :key="recipe.id">
         <!-- <RecipeCard :recipe="recipe"/> -->
-          <ModalWrapper id="show-recipe-details" v-if="user.isAuthenticated">
+          <ModalWrapper id="show-recipe-details">
             <template #button>
               <RecipeCard :recipe="recipe"/>
             </template>

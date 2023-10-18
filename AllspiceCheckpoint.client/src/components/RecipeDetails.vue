@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <div class="mb-2" v-if="recipe.creatorId == user.id">
+    <button @click="deleteRecipe(recipe.id)" class="btn btn-danger">
+      Delete Recipe
+      <i class="mdi mdi-delete"></i>
+    </button>
+    </div>
     <div class="row details-card">
       <div class="col-4">
         <img class="details-img" :src="recipe.img" :alt="recipe.title">
@@ -40,6 +46,8 @@
 import { computed } from "vue";
 import { Recipe } from "../models/Recipe.js";
 import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
+import { recipesService } from "../services/RecipesService.js";
 
 
 export default {
@@ -47,7 +55,17 @@ export default {
 setup() {  
 
   return {
-        ingredients: computed(() => AppState.activeIngredients)
+        ingredients: computed(() => AppState.activeIngredients),
+        user: computed(()=> AppState.user),
+        async deleteRecipe(recipeId){
+          try {
+            if(await Pop.confirm('Are you sure you want to delete this recipe?')){
+              await recipesService.deleteRecipe(recipeId)
+            }
+          } catch (error) {
+            Pop.error(error)
+          }
+        }
   };
 },
 };

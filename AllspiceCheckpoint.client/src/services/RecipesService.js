@@ -35,6 +35,11 @@ class RecipesService{
     logger.log('new recipe created with the following data!: ', res.data)
     return newRecipe
   }
+
+  async deleteRecipe(recipeId){
+    logger.log('deleting recipe with the following id:', recipeId)
+    // TODO: finish this delete
+  }
 }
 
 export const recipesService = new RecipesService;
