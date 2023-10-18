@@ -46,16 +46,7 @@ import { AppState } from "../AppState.js";
 export default {
   props: { recipe: { type: Object || Recipe, required: true } },
 setup() {  
-  onMounted(()=> getIngredientsByRecipe())
 
-    async function getIngredientsByRecipe() {
-      try {
-        const recipeId = AppState.activeRecipe.id
-        await recipesService.getIngredientsByRecipe(recipeId)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
   return {
 
   };

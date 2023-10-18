@@ -16,17 +16,26 @@
 
 
 <script>
+import { AppState } from "../AppState.js";
 import { Recipe } from "../models/Recipe.js";
 import { recipesService } from "../services/RecipesService.js";
-import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 export default {
   props: {recipe: {type: Object || Recipe, required: true}},
   setup(){
   return { 
-      setActiveRecipe(recipeId) {
+    async getIngredientsByRecipe() {
+      try {
+        const recipeId = AppState.activeRecipe.id
+        await recipesService.getIngredientsByRecipe(recipeId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+      async setActiveRecipe(recipeId) {
         try {
           recipesService.setActiveRecipe(recipeId);
+          await this.getIngredientsByRecipe()
         } catch (error) {
           Pop.error(error)
         }
