@@ -35,11 +35,19 @@
         Favorites
       </button>
     </div>
-    <div class="col-1">  
-      <button class="btn btn-light">
-        Create Recipe
-      </button>
-    </div>
+      <div class="col-1">
+        <!-- TODO: put v-if="user.isAuthenticated" here -->
+        <ModalWrapper id="create-event">
+          <template #button>
+            <button class="btn btn-light">
+              Create Recipe
+            </button>
+          </template>
+          <template #body>
+            <RecipeForm/>
+          </template>
+        </ModalWrapper>
+      </div>
   </div>
 
 </template>
